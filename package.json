@@ -1,0 +1,27 @@
+{
+  "name": "university_diploma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Not-a-whale/University_diploma_Kornienko.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Not-a-whale/University_diploma_Kornienko/issues"
+  },
+  "homepage": "https://github.com/Not-a-whale/University_diploma_Kornienko#readme",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
