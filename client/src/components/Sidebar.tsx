@@ -1,31 +1,18 @@
 import {Box, Button, Divider, Drawer, IconButton, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useState} from "react";
+import {setSidebar} from "../state";
+import {useDispatch} from "react-redux";
 
-const Sidebar = () => {
-    const [open, setState] = useState(false);
-
-    //function that is being called every time the drawer should open or close, the keys tab and shift are excluded so the user can focus between the elements with the keys
-    const toggleDrawer = (open) => (event) => {
-        if (
-            event.type === "keydown" &&
-            (event.key === "Tab" || event.key === "Shift")
-        ) {
-            return;
-        }
-        //changes the function state according to the value of open
-        setState(open);
-    };
+const Sidebar = ({open}: any) => {
+    const dispatch = useDispatch();
 
     return (<Drawer
         //from which side the drawer slides in
         anchor="left"
         //if open is true --> drawer is shown
         open={open}
-        //function that is called when the drawer should close
-        onClose={toggleDrawer(false)}
-        //function that is called when the drawer should open
-        onOpen={toggleDrawer(true)}
+        onClose={() => dispatch(setSidebar())}
     >
         {/* The inside of the drawer */}
         <Box
@@ -37,7 +24,7 @@ const Sidebar = () => {
         >
             {/* when clicking the icon it calls the function toggleDrawer and closes the drawer by setting the variable open to false */}
             <IconButton sx={{ mb: 2 }}>
-                <MenuIcon onClick={toggleDrawer(false)}/>
+                <MenuIcon onClick={() => dispatch(setSidebar())}/>
             </IconButton>
 
             <Divider sx={{ mb: 2 }} />
@@ -83,3 +70,5 @@ const Sidebar = () => {
         </Box>
     </Drawer>)
 }
+
+export default Sidebar;

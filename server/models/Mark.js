@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import {faker} from "@faker-js/faker";
 
 const MarkSchema = new mongoose.Schema(
     {
@@ -6,6 +7,9 @@ const MarkSchema = new mongoose.Schema(
         studentId: String,
         subjectId: String,
         mark: Number,
+        month: Number,
+        exam: Boolean,
+        attempt: Number,
     },
 );
 

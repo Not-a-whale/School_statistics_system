@@ -35,6 +35,9 @@ const StudentSchema = new mongoose.Schema(
         is_foreign: Boolean,
         semester_fee: Number,
         country: String,
+        is_alumni: Boolean,
+        gender: Boolean,
+        year_of_graduation: Number,
     },
 );
 

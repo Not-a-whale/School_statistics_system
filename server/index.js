@@ -5,10 +5,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import {faker} from "@faker-js/faker";
+import _ from "lodash";
+import Student from "./models/Student.js";
+import Mark from "./models/Mark.js";
 
 
 /* CONFIGURATION */
-dotenv.config();
+const env = dotenv.config();
+console.log(env.parsed.MONGO_URL);
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -25,10 +30,12 @@ app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);*/
 
 
+
+
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 9000;
+const PORT = env.parsed.PORT || 5000;
 mongoose
-    .connect(process.env.MONGO_URL, {
+    .connect(env.parsed.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
