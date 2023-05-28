@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isSidebarOpen: false,
+    isSidebarOpen: true,
+    isDarkMode: false
 }
 
 export const globalSlice = createSlice({
@@ -10,6 +11,9 @@ export const globalSlice = createSlice({
     reducers: {
         setSidebar: (state) => {
             state.isSidebarOpen = state.isSidebarOpen ? false : true;
+        },
+        setTheme: (state) => {
+            state.isDarkMode = state.isDarkMode ? false : true;
         }
     }
 });

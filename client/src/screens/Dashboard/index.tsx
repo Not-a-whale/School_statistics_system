@@ -1,6 +1,13 @@
+import {Box} from "@mui/material";
+import TableComponent from "../../components/Table";
+import {useGetStudentsQuery} from "../../state/api";
+
 const Dashboard = () => {
+    const { data, isLoading } = useGetStudentsQuery();
     return (
-        <div>Dashboard</div>
+        <Box>
+            <TableComponent data={data} />
+        </Box>
     )
 };
 

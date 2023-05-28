@@ -1,0 +1,27 @@
+.sidebar {
+
+  button {
+    &:hover {
+      outline: none !important;
+
+      * {
+        outline: none !important;
+        border: none !important;
+      }
+    }
+
+    &:focus {
+      outline: none !important;
+
+      span {
+        outline: none !important;
+        border: none !important;
+      }
+    }
+  }
+
+  &Icon{
+    display: flex;
+    justify-content: flex-end;
+  }
+}

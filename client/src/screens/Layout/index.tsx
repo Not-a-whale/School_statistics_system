@@ -1,37 +1,31 @@
 import {Outlet} from "react-router-dom";
-import {Box} from "@mui/material";
+import {Box, Container, useMediaQuery} from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import {useSelector} from "react-redux";
+import {SideNav} from "../../components/SideNav";
+import classes from "./index.module.scss";
 
 const Layout = (props) => {
-/*    const isNonMobile = useMediaQuery('(min-width: 600px)');
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const userId = useSelector((state) => state.global.userId);
-    useSelector((state) => console.log('state', state.global.userId));
-    const { data } = useGetUserQuery(userId);
-    console.log('data', data);*/
+    const isNonMobile = useMediaQuery('(min-width: 600px)');
     const open = useSelector((state: any) => state.global.isSidebarOpen);
-
-    return <Box
-/*        display={isNonMobile ? "flex" : "block"}
-        width="100%"
-        height="100%"*/
+    const { userInfo } = useSelector((state) => state.auth);
+    return <div
+        className={classes.layout}
     >
-        <Sidebar
-            open={open}
-/*            user={data}
-            data={data || {}}
-            isNoneMobile={isNonMobile}
-            drawerWidth={240}
-            isSidebarOpen={isSidebarOpen}
-            setIsSidebarOpen={setIsSidebarOpen}*/
-        />
-        <Box flexGrow={1}>
-            <Header />
+        {userInfo &&
+            <SideNav
+                drawerWidth={240}
+                isNoneMobile={isNonMobile}
+                open={open}
+            />}
+        <div
+            className={classes.content}
+        >
+            {userInfo && <Header />}
             <Outlet />
-        </Box>
-    </Box>
+        </div>
+    </div>
 };
 
 export default Layout;

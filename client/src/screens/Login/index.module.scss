@@ -1,0 +1,28 @@
+.fieldset {
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 30rem !important;
+    top: -5%;
+  }
+}
+
+
+.btn {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff;
+  background: #edf1f4;
+  padding: 15px 20px;
+  margin: 20px auto;
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+
+  &:active {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+  }
+}

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Not-a-whale/University_diploma_Kornienko#readme",
   "dependencies": {
+    "express-async-handler": "^1.2.0",
     "nodemon": "^2.0.22"
   },
   "devDependencies": {

@@ -1,22 +1,32 @@
 import './App.css'
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import {CssBaseline} from "@mui/material";
 import Layout from "./screens/Layout";
-import Dashboard from "./screens/Dashboard";
+import {useEffect, useMemo} from "react";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {themeSettings} from "./theme";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
+
 
 function App() {
+    const mode = useSelector((state) => state.global.mode);
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+    const { userInfo } = useSelector((state: any) => state.auth);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/dashboard');
+        } else {
+            navigate('/login');
+        }
+    }, []);
     return (
-        <div className="app">
-            <BrowserRouter>
-                <CssBaseline />
-                <Routes>
-                    <Route element={<Layout />}>
-                        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <>
+            <ThemeProvider theme={theme}>
+                <Layout />
+            </ThemeProvider>
+        </>
     );
 }
 

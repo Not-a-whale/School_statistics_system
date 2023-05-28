@@ -5,11 +5,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-import {faker} from "@faker-js/faker";
-import _ from "lodash";
-import Student from "./models/Student.js";
-import Mark from "./models/Mark.js";
-
+import userRoutes from "./routes/userRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
+import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 
 /* CONFIGURATION */
 const env = dotenv.config();
@@ -24,12 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 /* ROUTES */
-/*app.use("/client", clientRoutes);
-app.use("/general", generalRoutes);
-app.use("/management", managementRoutes);
-app.use("/sales", salesRoutes);*/
+app.use('/api/users/', userRoutes);
+app.use('/api/students/', studentRoutes);
+app.get('/', (req, res) => res.send('Server is ready'));
 
-
+app.use(notFound);
+app.use(errorHandler);
 
 
 /* MONGOOSE SETUP */
