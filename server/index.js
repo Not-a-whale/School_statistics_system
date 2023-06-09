@@ -11,7 +11,6 @@ import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 
 /* CONFIGURATION */
 const env = dotenv.config();
-console.log(env.parsed.MONGO_URL);
 const app = express();
 app.use(express.json());
 app.use(helmet());
