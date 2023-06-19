@@ -18,6 +18,7 @@ import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
 import {useDispatch} from "react-redux";
 import {logout} from "../state/authSlice";
+import logo from "../assets/images/main_logo.png";
 
 export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
         dispatch(logout());
     }
     return (
-        <div
+        <Box
             style={{
                 height: '100vh',
                 background: theme.palette.secondary[10],
@@ -43,16 +44,7 @@ export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
                 className={classes.sidebar}
             >
                 <div className={classes.sidebarIcon}>
-                    <IconButton
-                        sx={{ mb: 2, right: 0 }}
-                        onClick={() => dispatch(setSidebar())}
-                    >
-                        <CloseIcon
-                            sx={{
-                                color: theme.palette.primary[1000],
-                            }}
-                        />
-                    </IconButton>
+                    <img className={classes.main_logo} src={logo} alt="main logo"/>
                 </div>
 
                 <Divider sx={{ mb: 2 }} />
@@ -98,7 +90,7 @@ export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
                 </Box>
             </div>)
             }
-        </div>
+        </Box>
 
     )
 }

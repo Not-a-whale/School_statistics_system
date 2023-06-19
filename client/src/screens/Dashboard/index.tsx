@@ -1,12 +1,12 @@
-import {Box, useTheme} from "@mui/material";
-import TableComponent from "../../components/Table";
+import {Box, useMediaQuery, useTheme} from "@mui/material";
 import {useGetStudentsQuery} from "../../state/api";
 import {DataGrid} from "@mui/x-data-grid";
-import {StudentBase} from "../../interfaces/student.interface";
 import {useState} from "react";
+import PageHeader from "../../components/PageHeader";
 
 const Dashboard = () => {
-    const { data, isLoading }: StudentBase = useGetStudentsQuery();
+    const { data, isLoading }: any = useGetStudentsQuery();
+    const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
     const [paginationModel, setPaginationModel] = useState({
         pageSize: 10,
         page: 0,
@@ -47,52 +47,68 @@ const Dashboard = () => {
     ];
 
     return (
-        <Box
-            sx={{
-                background: theme.palette.secondary[10],
-                color: theme.palette.primary[1000],
-            }}
-        >
+        <Box m="1.5rem 2.5rem">
             <Box
-                gridColumn="span 8"
-                gridRow="span 3"
                 sx={{
-                    "& .MuiDataGrid-root": {
-                        border: "none",
-                        borderRadius: "5rem",
-                    },
-                    "& .MuiDataGrid-cell": {
-                        borderBottom: "none",
-                    },
-                    "& .MuiDataGrid-columnHeaders": {
-                        backgroundColor: theme.palette.background.alt,
-                        color: theme.palette.primary[1000],
-                        borderBottom: "none",
-                    },
-                    "& .MuiDataGrid-virtualScroller": {
-                        backgroundColor: theme.palette.background.alt,
-                    },
-                    "& .MuiDataGrid-footerContainer": {
-                        backgroundColor: theme.palette.background.alt,
-                        color: theme.palette.primary[1000],
-                        borderTop: "none",
-                    },
-                    "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                        color: `${theme.palette.primary[1000]} !important`,
-                    },
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  textAlign: 'left'
                 }}
             >
-                <DataGrid
-                    loading={isLoading || !data}
-                    getRowId={(row) => row._id}
-                    rows={(data) || []}
-                    columns={columns}
-                    paginationModel={paginationModel}
-                    onPaginationModelChange={setPaginationModel}
-                    pageSizeOptions={[10, 20, 50]}
-                />
+                <PageHeader title="Дашборд" subtitle="Ласкаво просимо до нашої системи"/>
+            </Box>
+           <Box
+               mt="20px"
+               display="grid"
+               gridTemplateColumns="repeat(12, 1fr)"
+               gridAutoRows="160px"
+               gap="20px"
+               sx={{
+                   "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
+               }}
+           >
+               <Box
+                   gridColumn="span 8"
+                   gridRow="span 3"
+                   sx={{
+                       "& .MuiDataGrid-root": {
+                           border: "none",
+                           borderRadius: "5rem",
+                       },
+                       "& .MuiDataGrid-cell": {
+                           borderBottom: "none",
+                       },
+                       "& .MuiDataGrid-columnHeaders": {
+                           backgroundColor: theme.palette.background.alt,
+                           color: theme.palette.secondary[100],
+                           borderBottom: "none",
+                       },
+                       "& .MuiDataGrid-virtualScroller": {
+                           backgroundColor: theme.palette.background.alt,
+                       },
+                       "& .MuiDataGrid-footerContainer": {
+                           backgroundColor: theme.palette.background.alt,
+                           color: theme.palette.secondary[100],
+                           borderTop: "none",
+                       },
+                       "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+                           color: `${theme.palette.secondary[200]} !important`,
+                       },
+                   }}
+               >
+                   <DataGrid
+                       loading={isLoading || !data}
+                       getRowId={(row) => row._id}
+                       rows={(data) || []}
+                       columns={columns}
+                       paginationModel={paginationModel}
+                       onPaginationModelChange={setPaginationModel}
+                       pageSizeOptions={[10, 20, 50]}
+                   />
+               </Box>
             </Box>
         </Box>
+
     )
 };
 

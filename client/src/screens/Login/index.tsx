@@ -51,7 +51,7 @@ const Login = () => {
             <Typography variant="body2" color="text.secondary" align="center" {...props}>
                 {'Copyright © '}
                 <Link color="inherit" href="https://mui.com/">
-                    Your Website
+                    Nikita Kornienko
                 </Link>{' '}
                 {new Date().getFullYear()}
                 {'.'}

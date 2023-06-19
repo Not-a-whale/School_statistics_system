@@ -7,6 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
+import generalRoutes from "./routes/generalRoutes.js";
 import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 
 /* CONFIGURATION */
@@ -23,6 +24,7 @@ app.use(cors());
 /* ROUTES */
 app.use('/api/users/', userRoutes);
 app.use('/api/students/', studentRoutes);
+app.use('/api/general/', generalRoutes);
 app.get('/', (req, res) => res.send('Server is ready'));
 
 app.use(notFound);
