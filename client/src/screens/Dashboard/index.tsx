@@ -1,17 +1,26 @@
 import {Box, useMediaQuery, useTheme} from "@mui/material";
-import {useGetStudentsQuery} from "../../state/api";
+import {useGetStudentsQuery, useGetDashboardQuery} from "../../state/api";
 import {DataGrid} from "@mui/x-data-grid";
 import {useState} from "react";
 import PageHeader from "../../components/PageHeader";
+import StatBox from "../../components/StatBox";
+import {Email, PersonAdd, PointOfSale, Traffic} from "@mui/icons-material";
+import Groups3Icon from '@mui/icons-material/Groups3';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import OverviewChart from "../../components/OverviewChart";
+import AccessibleIcon from '@mui/icons-material/Accessible';
+import Diversity1Icon from '@mui/icons-material/Diversity1';
 
 const Dashboard = () => {
-    const { data, isLoading }: any = useGetStudentsQuery();
+    const { students, isLoading }: any = useGetStudentsQuery();
+    const { data, isLoadingDashboard }: any = useGetDashboardQuery();
     const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
     const [paginationModel, setPaginationModel] = useState({
         pageSize: 10,
         page: 0,
     });
-    console.log(data);
+    console.log('data', data);
+    console.log('students', students);
     const theme: any = useTheme();
     const columns = [
         {
@@ -67,7 +76,61 @@ const Dashboard = () => {
                    "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
                }}
            >
-               <Box
+               {/* ROW 1 */}
+               <StatBox
+                   title="Всього студентів"
+                   value={data && data.studentsCount}
+                   icon={
+                       <Groups3Icon
+                           sx={{ color: theme.palette.primary[600], fontSize: "26px" }}
+                       />
+                   }
+               />
+               <StatBox
+                   title="Наші відмінники"
+                   value={data && data.highAchieversCount}
+                   increase="+21%"
+                   description="За минулий семестр"
+                   icon={
+                       <GroupAddIcon
+                           sx={{ color: theme.palette.primary[600], fontSize: "26px" }}
+                       />
+                   }
+               />
+              <Box
+                   gridColumn="span 8"
+                   gridRow="span 2"
+                   p="1rem"
+                   borderRadius="0.55rem"
+                   sx={{
+                       backgroundColor: theme.palette.primary[0]
+                   }}
+               >
+                   <OverviewChart isDashboard={true} />
+               </Box>
+              <StatBox
+                   title="Іноземці"
+                   value={data && data.foreignersCount}
+                   increase="+5%"
+                   description="За останній рік"
+                   icon={
+                       <Diversity1Icon
+                           sx={{ color: theme.palette.primary[600], fontSize: "26px" }}
+                       />
+                   }
+               />
+               <StatBox
+                   title="Відраховані"
+                   value={data && data.dropoutCount}
+                   increase="+1%"
+                   description="За останній рік"
+                   icon={
+                       <AccessibleIcon
+                           sx={{ color: theme.palette.primary[600], fontSize: "26px" }}
+                       />
+                   }
+               />
+{/*               <Box
                    gridColumn="span 8"
                    gridRow="span 3"
                    sx={{
@@ -97,15 +160,15 @@ const Dashboard = () => {
                    }}
                >
                    <DataGrid
-                       loading={isLoading || !data}
+                       loading={isLoading || !students}
                        getRowId={(row) => row._id}
-                       rows={(data) || []}
+                       rows={(students) || []}
                        columns={columns}
                        paginationModel={paginationModel}
                        onPaginationModelChange={setPaginationModel}
                        pageSizeOptions={[10, 20, 50]}
                    />
-               </Box>
+               </Box>*/}
             </Box>
         </Box>
 

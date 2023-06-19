@@ -2,9 +2,7 @@ import Student from "../models/Student.js";
 import Mark from "../models/Mark.js";
 
 export const getDashboardStats = async (req, res) => {
-    console.log("getDashboardStats")
     try {
-        console.log("getDashboardStats")
         /* Recent Transactions */
         const studentsCount = await Student.aggregate([
             {
@@ -69,10 +67,6 @@ export const getDashboardStats = async (req, res) => {
                 '$count': 'overachieversCount'
             }
         ]);
-        console.log('studentsCount', studentsCount[0]?.current_students);
-        console.log('foreignersCount', foreignersCount[0]);
-        console.log('dropoutCount', dropoutCount[0]);
-        console.log('highAchieversCount', highAchieversCount[0]);
         res.status(200).json({
             studentsCount: studentsCount[0]?.current_students,
             foreignersCount: foreignersCount[0]?.current_foreigners,

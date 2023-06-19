@@ -11,6 +11,14 @@ export const apiSlice = createApi({
             query: () => "api/students",
             providesTags: ["Students"],
         }),
+        getDashboard: build.query({
+            query: () => "api/general/dashboard",
+            providesTags: ["Dashboard"],
+        }),
+        getMarks: build.query({
+            query: () => "api/marks/avgMarks",
+            providesTags: ["Marks"],
+        }),
 /*        getUser: build.query({
             query: (id) => `general/user/${id}`,
             providesTags: ["User"],
@@ -55,7 +63,9 @@ export const apiSlice = createApi({
 });
 
 export const {
-    useGetStudentsQuery
+    useGetStudentsQuery,
+    useGetDashboardQuery,
+    useGetMarksQuery,
 /*    useGetUserQuery,
     useGetProductsQuery,
     useGetCustomersQuery,
