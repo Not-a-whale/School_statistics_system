@@ -1,4 +1,4 @@
-import {Box, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {useGetStudentsQuery, useGetDashboardQuery} from "../../state/api";
 import {DataGrid} from "@mui/x-data-grid";
 import {useState} from "react";
@@ -11,6 +11,7 @@ import OverviewChart from "../../components/OverviewChart";
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import StudentsDataGrid from "../../components/StudentsDataGrid";
+import BreakdownChart from "../../components/BreakdownChart";
 
 const Dashboard = () => {
     const { data, isLoading }: any = useGetDashboardQuery();
@@ -19,7 +20,6 @@ const Dashboard = () => {
         pageSize: 10,
         page: 0,
     });
-    console.log('data', data);
     const theme: any = useTheme();
 
     return (
@@ -28,7 +28,7 @@ const Dashboard = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'flex-start',
-                  textAlign: 'left'
+                  textAlign: 'left',
                 }}
             >
                 <PageHeader title="Дашборд" subtitle="Ласкаво просимо до нашої системи"/>
@@ -70,9 +70,13 @@ const Dashboard = () => {
                    p="1rem"
                    borderRadius="0.55rem"
                    sx={{
-                       backgroundColor: theme.palette.primary[0]
+                       backgroundColor: theme.palette.primary[0],
+                       boxShadow: theme.mainBoxShadow
                    }}
                >
+                  <Typography variant="h5" sx={{ color: theme.palette.primary[600], marginBottom: ".5rem" }}>
+                      Середній бал наших студентів
+                  </Typography>
                    <OverviewChart isDashboard={true} />
                </Box>
               <StatBox
@@ -100,63 +104,34 @@ const Dashboard = () => {
                 {/* ROW 2 */}
                <Box
                    gridColumn="span 8"
-                   gridRow="span 2"
-                   p="1rem"
+                   gridRow="span 3"
+                   p="2rem 1rem 4rem 1rem"
                    borderRadius="0.55rem"
                    sx={{
-                       backgroundColor: theme.palette.primary[0]
+                       backgroundColor: theme.palette.primary[0],
+                       boxShadow: theme.mainBoxShadow
                    }}
                >
+                   <Typography variant="h5" sx={{ color: theme.palette.primary[600], marginBottom: ".5rem" }}>
+                       Список студентів
+                   </Typography>
                     <StudentsDataGrid />
                </Box>
                <Box
                    gridColumn="span 4"
-                   gridRow="span 2"
+                   gridRow="span 3"
                    p="1rem"
                    borderRadius="0.55rem"
                    sx={{
-                       backgroundColor: theme.palette.primary[0]
-                   }}
-               ></Box>
-{/*               <Box
-                   gridColumn="span 8"
-                   gridRow="span 3"
-                   sx={{
-                       "& .MuiDataGrid-root": {
-                           border: "none",
-                           borderRadius: "5rem",
-                       },
-                       "& .MuiDataGrid-cell": {
-                           borderBottom: "none",
-                       },
-                       "& .MuiDataGrid-columnHeaders": {
-                           backgroundColor: theme.palette.background.alt,
-                           color: theme.palette.secondary[100],
-                           borderBottom: "none",
-                       },
-                       "& .MuiDataGrid-virtualScroller": {
-                           backgroundColor: theme.palette.background.alt,
-                       },
-                       "& .MuiDataGrid-footerContainer": {
-                           backgroundColor: theme.palette.background.alt,
-                           color: theme.palette.secondary[100],
-                           borderTop: "none",
-                       },
-                       "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                           color: `${theme.palette.secondary[200]} !important`,
-                       },
+                       backgroundColor: theme.palette.primary[0],
+                       boxShadow: theme.mainBoxShadow
                    }}
                >
-                   <DataGrid
-                       loading={isLoading || !students}
-                       getRowId={(row) => row._id}
-                       rows={(students) || []}
-                       columns={columns}
-                       paginationModel={paginationModel}
-                       onPaginationModelChange={setPaginationModel}
-                       pageSizeOptions={[10, 20, 50]}
-                   />
-               </Box>*/}
+                   <Typography variant="h5" sx={{ color: theme.palette.primary[600] }}>
+                       Наші групи
+                   </Typography>
+                    <BreakdownChart isDashboard={true}></BreakdownChart>
+               </Box>
             </Box>
         </Box>
 

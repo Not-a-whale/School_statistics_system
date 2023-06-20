@@ -1,4 +1,7 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   min-height: 100vh;
   height: 100vh;
@@ -23,8 +26,39 @@
   }
 
   &Icon{
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    .logo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-size: cover;
+      filter: brightness(1.5) contrast(1.5);
+    }
+
+    .text {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: rotateText 10s linear infinite;
+      span {
+        position: absolute;
+        top: -30px;
+        left: 45px;
+        font-size: 1.2em;
+        transform-origin: 0 75px;
+      }
+    }
   }
 
   .main_logo {
@@ -34,5 +68,14 @@
     margin: 5px 0;
     border-radius: 50%;
     top: 0;
+  }
+}
+
+@keyframes rotateText {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

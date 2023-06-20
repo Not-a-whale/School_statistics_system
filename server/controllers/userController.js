@@ -28,16 +28,9 @@ const authUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
 
-    console.log(email);
-    console.log("zzzzzzzzzzzzzzzzzzzzzzzzzz", await User.findOne({ email }));
-
     const userExists = await User.findOne({ email });
-    console.log('userExists', userExists)
-
-    console.log("USER DOES EXIST", userExists);
 
     if (userExists) {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         res.status(400).json({
             message: 'User already exists'
         });
@@ -96,7 +89,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // route PUT /api/users/profile
 // access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    console.log(req.user)
     const user = await User.findById(req.user._id);
 
     if (user) {

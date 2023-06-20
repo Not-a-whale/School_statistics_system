@@ -3,79 +3,144 @@ import {
     Button,
     Divider,
     Drawer,
-    IconButton,
+    IconButton, List, ListItem,
     ListItemButton,
     ListItemIcon,
-    ListItemText,
+    ListItemText, Typography,
     useTheme
 } from "@mui/material";
 import classes from "./SideNav.module.scss";
-import {setSidebar} from "../state";
-import CloseIcon from "@mui/icons-material/Close";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import GradingIcon from "@mui/icons-material/Grading";
-import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
-import Diversity1Icon from "@mui/icons-material/Diversity1";
 import {useDispatch} from "react-redux";
 import {logout} from "../state/authSlice";
 import logo from "../assets/images/main_logo.png";
+import {
+    AdminPanelSettingsOutlined,
+    CalendarMonthOutlined,
+    ChevronRightOutlined,
+    Groups2Outlined,
+    HomeOutlined, PieChartOutlined, PointOfSaleOutlined, PublicOutlined,
+    ReceiptLongOutlined,
+    ShoppingCartOutlined, TodayOutlined, TrendingUpOutlined
+} from "@mui/icons-material";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import Diversity1Icon from "@mui/icons-material/Diversity1";
+
+const navItems = [
+    {
+        name: "Дашборд",
+        text: "dashboard",
+        icon: <HomeOutlined />,
+    },
+    {
+        name: "Студенти",
+        text: "Students",
+        icon: <Groups2Outlined />,
+    },
+    {
+        name: "Іноземці",
+        text: "foreigners",
+        icon: <Diversity1Icon />,
+    },
+];
 
 export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
     const dispatch = useDispatch();
     const theme: any = useTheme();
+    const location: any = useLocation();
+    const path = location.pathname.split('/')[1];
 
 
     const logoutHandler = () => {
         dispatch(logout());
     }
+
+    const returnLogoHtml = () => {
+        return 'Edu Stats Tracker'.split("").map((char, i) => <span style={{'transform': `rotate(${i * 19}deg)`}}>{char}</span>);
+    }
+
+    const [active, setActive] = useState(path);
+    const navigate = useNavigate();
+
     return (
         <Box
             style={{
-                background: theme.palette.secondary[10],
+                background: theme.palette.secondary[100],
                 color: theme.palette.primary[1000],
+                boxShadow: theme.mainBoxShadow
             }}
         >
             {open && (<div
                 style={{
                     width: drawerWidth,
-                    background: theme.palette.secondary[10],
+                    background: theme.palette.secondary[100],
+
                 }}
                 className={classes.sidebar}
             >
                 <div className={classes.sidebarIcon}>
-                    <img className={classes.main_logo} src={logo} alt="main logo"/>
+                    <div
+                        className={classes.logo}
+                        style={{
+                            backgroundImage: `url(${logo})`,
+                            }}
+                    ></div>
+                    <div className={classes.text}>
+                        {returnLogoHtml()}
+                    </div>
                 </div>
 
-                <Divider sx={{ mb: 2 }} />
+                <Divider sx={{ width: '100%', mt: 3, mb: 1 }} />
 
-                <Box sx={{ mb: 2 }}>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <PeopleAltIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Студенти" />
-                    </ListItemButton>
+                <Box sx={{ mb: 2, pl: 2, width: '100%' }}>
+                    <List>
+                        {navItems.map(({ text, icon, name }) => {
+                            if (!icon) {
+                                return (
+                                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
+                                        {text}
+                                    </Typography>
+                                );
+                            }
+                            const lcText = text.toLowerCase();
 
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <GradingIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Успішність" />
-                    </ListItemButton>
-
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <RecordVoiceOverIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Викладачі" />
-                    </ListItemButton>
-
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <Diversity1Icon />
-                        </ListItemIcon>
-                        <ListItemText primary="Іноземці" />
-                    </ListItemButton>
+                            return (
+                                <ListItem key={text} disablePadding>
+                                    <ListItemButton
+                                        onClick={() => {
+                                            navigate(`/${lcText}`);
+                                            setActive(lcText);
+                                        }}
+                                        sx={{
+                                            backgroundColor:
+                                                active === lcText
+                                                    ? theme.palette.secondary[300]
+                                                    : "transparent",
+                                            color:
+                                                active === lcText
+                                                    ? theme.palette.primary[1000]
+                                                    : theme.palette.primary[1000],
+                                        }}
+                                    >
+                                        <ListItemIcon
+                                            sx={{
+                                                color:
+                                                    active === lcText
+                                                        ? theme.palette.primary[600]
+                                                        : theme.palette.primary[1000],
+                                            }}
+                                        >
+                                            {icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={name} />
+                                        {active === lcText && (
+                                            <ChevronRightOutlined sx={{ ml: "auto" }} />
+                                        )}
+                                    </ListItemButton>
+                                </ListItem>
+                            );
+                        })}
+                    </List>
                 </Box>
                 <Box
                 >

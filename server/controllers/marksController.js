@@ -25,15 +25,6 @@ export const getAverageMarks = async (req, res) => {
                 }
             }
         ]);
-
-        console.log('marks', [{
-            data: marks?.map((mark) => {
-                return {
-                    month: months[mark.month - 1],
-                    avgMark: mark.avgMark
-                };
-            }),
-        }]);
         res.status(200).json([{
             id: 'marks',
             color: "#000",

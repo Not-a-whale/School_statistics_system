@@ -10,6 +10,7 @@ import studentRoutes from "./routes/studentRoutes.js";
 import generalRoutes from "./routes/generalRoutes.js";
 import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 import marksRoutes from "./routes/marksRoutes.js";
+import departmentsRoutes from "./routes/departmentsRoutes.js";
 
 /* CONFIGURATION */
 const env = dotenv.config();
@@ -25,6 +26,7 @@ app.use(cors());
 /* ROUTES */
 app.use('/api/users/', userRoutes);
 app.use('/api/students/', studentRoutes);
+app.use('/api/departments/', departmentsRoutes);
 app.use('/api/general/', generalRoutes);
 app.use('/api/marks/', marksRoutes);
 app.get('/', (req, res) => res.send('Server is ready'));

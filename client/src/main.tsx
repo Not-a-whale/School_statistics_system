@@ -10,6 +10,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Profile from "./screens/Profile";
+import {Foreigners} from "./screens/Foreigners";
+import {Students} from "./screens/Students";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
             <Route path="" element={<PrivateRoute />}>
                 <Route path='/profile' element={<Profile/>} />
                 <Route index={true} path='/dashboard' element={<Dashboard />} />
+                <Route path='/foreigners' element={<Foreigners />} />
+                <Route path='/students' element={<Students />} />
             </Route>
         </Route>
     )

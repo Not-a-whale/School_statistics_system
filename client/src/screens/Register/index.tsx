@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {redirect, useLocation, useNavigate} from "react-router-dom";
 import {useRegisterMutation} from "../../state/usersApiSlice";
 import {setCredentials} from "../../state/authSlice";
 import {
@@ -24,17 +24,12 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [register, { isLoading }] = useRegisterMutation();
 
-    const { userInfo } = useSelector((state) => state.auth);
-
-    useEffect(() => {
-        if (userInfo) {
-            navigate('/');
-        }
-    }, [navigate, userInfo]);
+    const navigate = useNavigate();
+    const location: any = useLocation();
+    const path = location.pathname.split('/')[1];
 
     function Copyright(props: any) {
         return (
@@ -59,7 +54,7 @@ const Register = () => {
                 console.log({ name, email, password })
                 const res: any = await register({ name, email, password }).unwrap();
                 dispatch(setCredentials({ ...res }));
-                //navigate(redirect);
+                navigate('/dashboard');
             } catch (err) {
                 //toast.error(err?.data?.message || err.error);
             }

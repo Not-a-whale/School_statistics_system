@@ -29,6 +29,17 @@ export const tokensDark = {
         900: "#808080",
         1000: "#737373",
     },
+    tertiary: {
+        100: "#E6F4EA",
+        200: "#B2EACD",
+        300: "#7EDFAF",
+        400: "#7EAAF0",
+        500: "#5990EC",
+        600: "#4179D3",
+        700: "#DA70D6",
+        800: "#BA55D3",
+        900: "#9932CC",
+    },
 };
 
 export const tokensLight: any = {
@@ -61,7 +72,19 @@ export const tokensLight: any = {
             800: "#ceced8",
             900: "#cacad4",
             1000: "#c6c6d0",
-        }
+        },
+        tertiary: {
+            100: "#FFB6C1",
+            200: "#FF69B4",
+            300: "#FF1493",
+            400: "#7EAAF0",
+            500: "#5990EC",
+            600: "#4179D3",
+            700: "#009E50",
+            800: "#008545",
+            900: "#006B3B",
+
+        },
 };
 
 // mui theme settings
@@ -80,6 +103,9 @@ export const themeSettings = (mode) => {
                         ...tokensDark.secondary,
                         main: tokensDark.secondary[500],
                     },
+                    tertiary: {
+                        ...tokensDark.tertiary
+                    }
                 }
                 : {
                     // palette values for light mode
@@ -91,8 +117,12 @@ export const themeSettings = (mode) => {
                         ...tokensLight.secondary,
                         main: tokensLight.secondary[500],
                     },
+                    tertiary: {
+                        ...tokensLight.tertiary
+                    }
                 }),
         },
+        mainBoxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
         typography: {
             fontFamily: ["Inter", "sans-serif"].join(","),
             fontSize: 12,

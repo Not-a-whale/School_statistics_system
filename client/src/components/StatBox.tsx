@@ -14,7 +14,8 @@ const StatBox = ({ title, value, increase, icon, description }: any) => {
             flex="1 1 100%"
             borderRadius="0.55rem"
             sx={{
-                backgroundColor: theme.palette.primary[0]
+                backgroundColor: theme.palette.primary[0],
+                boxShadow: theme.mainBoxShadow
             }}
         >
             <FlexBetween>

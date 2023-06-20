@@ -25,7 +25,8 @@ const Header = () => {
             position: 'static',
             width: "96%",
             margin: "0 auto",
-            background: theme.palette.secondary[100]
+            background: theme.palette.secondary[100],
+            boxShadow: theme.mainBoxShadow
         }}
         className={classes.header}
         >
