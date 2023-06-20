@@ -1,18 +1,15 @@
 import classes from './Header.module.scss';
-import {AppBar, Box, Button, CardMedia, InputBase, Menu, MenuItem, Toolbar, Typography, useTheme} from "@mui/material";
+import {AppBar, Box, Button, Menu, MenuItem, Toolbar, Typography, useTheme} from "@mui/material";
 import {
     Menu as MenuIcon,
-    Search,
     DarkModeOutlined,
     LightModeOutlined,
-    SettingsOutlined,
     ArrowDropDownOutlined
 } from "@mui/icons-material";
 import {useDispatch} from "react-redux";
 import FlexBetween from "./FlexBetween";
 import IconButton from "@mui/material/IconButton";
 import {useState} from "react";
-import logo from "../assets/images/main_logo.png"
 import {setSidebar} from "../state";
 
 const Header = () => {
@@ -26,7 +23,8 @@ const Header = () => {
     return (
         <AppBar sx={{
             position: 'static',
-            width: "100%",
+            width: "96%",
+            margin: "0 auto",
             background: theme.palette.secondary[100]
         }}
         className={classes.header}

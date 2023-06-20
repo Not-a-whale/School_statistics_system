@@ -3,8 +3,8 @@ const PageHeader = ({ title, subtitle }: any) => {
     const theme: any = useTheme();
     return (
         <Box>
-            <Typography variant="h2" color={theme.palette.secondary[100]} sx={{mb: "5px"}}>{title}</Typography>
-            <Typography variant="h5" color={theme.palette.secondary[800]} sx={{mb: "5px"}}>{subtitle}</Typography>
+            <Typography variant="h2" color={theme.palette.primary[600]} sx={{mb: "5px"}}>{title}</Typography>
+            <Typography variant="h5" color={theme.palette.primary[500]} sx={{mb: "5px"}}>{subtitle}</Typography>
         </Box>
     )
 }

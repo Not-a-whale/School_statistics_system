@@ -10,50 +10,17 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import OverviewChart from "../../components/OverviewChart";
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
+import StudentsDataGrid from "../../components/StudentsDataGrid";
 
 const Dashboard = () => {
-    const { students, isLoading }: any = useGetStudentsQuery();
-    const { data, isLoadingDashboard }: any = useGetDashboardQuery();
+    const { data, isLoading }: any = useGetDashboardQuery();
     const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
     const [paginationModel, setPaginationModel] = useState({
         pageSize: 10,
         page: 0,
     });
     console.log('data', data);
-    console.log('students', students);
     const theme: any = useTheme();
-    const columns = [
-        {
-            field: "_id",
-            headerName: "ID Студента",
-            flex: 1,
-        },
-        {
-            field: "name",
-            headerName: "Ім'я",
-            flex: 1,
-        },
-        {
-            field: "last_name",
-            headerName: "Прізвище",
-            flex: 1,
-        },
-        {
-            field: "email",
-            headerName: "Email",
-            flex: 1,
-        },
-        {
-            field: "group",
-            headerName: "Група",
-            flex: 1,
-        },
-        {
-            field: "faculty",
-            headerName: "Факультет",
-            flex: 1,
-        },
-    ];
 
     return (
         <Box m="1.5rem 2.5rem">
@@ -130,6 +97,27 @@ const Dashboard = () => {
                        />
                    }
                />
+                {/* ROW 2 */}
+               <Box
+                   gridColumn="span 8"
+                   gridRow="span 2"
+                   p="1rem"
+                   borderRadius="0.55rem"
+                   sx={{
+                       backgroundColor: theme.palette.primary[0]
+                   }}
+               >
+                    <StudentsDataGrid />
+               </Box>
+               <Box
+                   gridColumn="span 4"
+                   gridRow="span 2"
+                   p="1rem"
+                   borderRadius="0.55rem"
+                   sx={{
+                       backgroundColor: theme.palette.primary[0]
+                   }}
+               ></Box>
 {/*               <Box
                    gridColumn="span 8"
                    gridRow="span 3"

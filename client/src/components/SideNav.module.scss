@@ -1,5 +1,7 @@
 .sidebar {
   position: relative;
+  min-height: 100vh;
+  height: 100vh;
   button {
     &:hover {
       outline: none !important;

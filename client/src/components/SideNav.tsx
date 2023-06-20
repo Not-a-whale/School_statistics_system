@@ -31,7 +31,6 @@ export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
     return (
         <Box
             style={{
-                height: '100vh',
                 background: theme.palette.secondary[10],
                 color: theme.palette.primary[1000],
             }}
