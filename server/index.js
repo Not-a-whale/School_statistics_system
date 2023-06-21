@@ -11,6 +11,10 @@ import generalRoutes from "./routes/generalRoutes.js";
 import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 import marksRoutes from "./routes/marksRoutes.js";
 import departmentsRoutes from "./routes/departmentsRoutes.js";
+import { faker } from '@faker-js/faker';
+import _ from "lodash";
+import Student from "./models/Student.js";
+
 
 /* CONFIGURATION */
 const env = dotenv.config();

@@ -38,6 +38,7 @@ const StudentSchema = new mongoose.Schema(
         is_alumni: Boolean,
         gender: Boolean,
         year_of_graduation: Number,
+        avatar: String,
     },
 );
 

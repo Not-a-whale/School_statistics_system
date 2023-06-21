@@ -12,6 +12,7 @@ import Register from "./screens/Register";
 import Profile from "./screens/Profile";
 import {Foreigners} from "./screens/Foreigners";
 import {Students} from "./screens/Students";
+import {Student} from "./screens/Students/Student";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
                 <Route index={true} path='/dashboard' element={<Dashboard />} />
                 <Route path='/foreigners' element={<Foreigners />} />
                 <Route path='/students' element={<Students />} />
+                <Route path='/students/:id' element={<Student />} />
             </Route>
         </Route>
     )
