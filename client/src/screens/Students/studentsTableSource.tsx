@@ -38,7 +38,7 @@ export const userColumns = [
     {
         field: "user",
         headerName: "Фото",
-        width: 120,
+        flex: 1,
         renderCell: (params: any) => {
             return (
                 <div className={classes.cellWithImg}>
@@ -52,49 +52,49 @@ export const userColumns = [
     {
         field: "email",
         headerName: "Пошта",
-        width: 230,
+        flex: 1,
     },
     {
         field: "name",
         headerName: "Ім'я",
-        width: 120,
+        flex: 1,
     },
     {
         field: "last_name",
         headerName: "Прізвище",
-        width: 120,
+        flex: 1,
     },
     {
         field: "faculty",
         headerName: "Факультет",
-        width: 70,
-        align: "center",
+        align: "left",
+        width: 50,
     },
     {
         field: "group",
         headerName: "Група",
-        width: 70,
-        align: "center",
+        align: "left",
+        flex: 1,
     },
     {
         field: "course",
         headerName: "Курс",
-        align: "center",
+        align: "left",
+        flex: 1,
     },
     {
         field: "status",
         headerName: "Status",
-        width: 120,
+        flex: 1,
         renderCell: (params: any) => {
             return (
-                <div className={classes.cellWithStatus}>
-                    <span
-                        style={{
-                            ...getStatusStyle(params.row)
-                        }}
-                    >
+                <div
+                    className={classes.cellWithStatus}
+                    style={{
+                        ...getStatusStyle(params.row)
+                    }}
+                >
                        {params.row.is_expelled ? 'Виключений' : params.row.is_foreign ? 'Іноземець' : params.row.is_alumni ? 'Випускник' : params.row.has_scholarship ? 'Стипендіат' : 'Cтудент'}
-                    </span>
                 </div>
             );
         },
@@ -102,7 +102,7 @@ export const userColumns = [
     {
         field: "link",
         headerName: "",
-        width: 120,
+        flex: 1,
         renderCell: (params: any) => {
             return (
                 <div className={classes.cellAction}>

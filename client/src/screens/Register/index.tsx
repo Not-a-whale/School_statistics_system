@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import classes from './index.module.scss';
+import {StyledButton} from "../../components/StyledButton";
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -35,8 +36,8 @@ const Register = () => {
         return (
             <Typography variant="body2" color="text.secondary" align="center" {...props}>
                 {'Copyright © '}
-                <Link color="inherit" href="https://mui.com/">
-                    Your Website
+                <Link color="inherit" href="https://github.com/Not-a-whale?tab=repositories">
+                    Nikita Kornienko
                 </Link>{' '}
                 {new Date().getFullYear()}
                 {'.'}
@@ -56,7 +57,7 @@ const Register = () => {
                 dispatch(setCredentials({ ...res }));
                 navigate('/dashboard');
             } catch (err) {
-                //toast.error(err?.data?.message || err.error);
+               // toast.error(err?.data?.message || err.error);
             }
         }
     };
@@ -80,7 +81,7 @@ const Register = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Вхід
                     </Typography>
                     <Box component="form"
                          onSubmit={submitHandler}
@@ -93,7 +94,7 @@ const Register = () => {
                             required
                             fullWidth
                             id="name"
-                            label="name"
+                            label="Ім'я"
                             name="name"
                             autoComplete="name"
                             autoFocus
@@ -112,7 +113,7 @@ const Register = () => {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="Електронна пошта"
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -130,7 +131,7 @@ const Register = () => {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="Пароль"
                             type="password"
                             id="password"
                             autoComplete="current-password"
@@ -147,8 +148,8 @@ const Register = () => {
                             margin="normal"
                             required
                             fullWidth
-                            name="Confirm password"
-                            label="Password"
+                            name="confirmPassword"
+                            label="Повторити пароль"
                             type="password"
                             id="confirmPassword"
                             autoComplete="current-password"
@@ -161,22 +162,12 @@ const Register = () => {
                                 border: 'none',
                             }}
                         />
-                        <button
-                            type="submit"
-                            className={classes.btn}
-                        >Sign In</button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
+                        <StyledButton text="Зареєструватись" />
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                <Link href="/login" variant="body2">
+                                    {"Є аккаунт? Увійти"}
                                 </Link>
                             </Grid>
-                        </Grid>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -15,6 +15,7 @@ import {useNavigate} from "react-router-dom";
 import {setCredentials} from "../../state/authSlice";
 import {useLoginMutation} from "../../state/usersApiSlice";
 import classes from './index.module.scss';
+import {StyledButton} from "../../components/StyledButton";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -68,11 +69,12 @@ const Login = () => {
             <CssBaseline />
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 15,
                     padding: 4,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     boxShadow: '15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 20px #fffb',
                     borderRadius: '20px',
                     gap: '20px',
@@ -83,7 +85,7 @@ const Login = () => {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Вхід
                 </Typography>
                 <Box
                     component="form"
@@ -96,7 +98,7 @@ const Login = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        label="Електронна пошта"
                         name="email"
                         onChange={(e) => setEmail(e.target.value)}
                         sx={{
@@ -113,7 +115,7 @@ const Login = () => {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Пароль"
                         type="password"
                         id="password"
                         autoComplete="chrome-off"
@@ -126,21 +128,11 @@ const Login = () => {
                             border: 'none',
                         }}
                     />
-                    <button
-                        type="submit"
-                        className={classes.btn}
-                    >Sign In</button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
+                    <StyledButton text="Увійти" />
+                    <Grid item>
+                        <Link href="/register" variant="body2">
+                            {"Не маєте акаунту? Зареєструйтеся"}
+                        </Link>
                     </Grid>
                 </Box>
             </Box>

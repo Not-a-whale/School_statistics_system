@@ -2,14 +2,14 @@ import {Box, Typography, useTheme} from "@mui/material";
 import {useGetMarksQuery} from "../state/api";
 import {ResponsiveLine} from "@nivo/line";
 
-const OverviewChart = ({ isDashboard }: any) => {
+const OverviewChart = ({ isDashboard, marks }: any) => {
     const theme: any = useTheme();
     const { data, isLoading } = useGetMarksQuery();
     console.log('overview chart data', data);
     if (!data || isLoading) return "Loading...";
     return (
         <ResponsiveLine
-            data={data}
+            data={isDashboard ? data : marks}
             colors={[theme.palette.primary[600]]}
             layers={["grid", "axes", "lines", "markers", "legends"]}
             axisLeft={{

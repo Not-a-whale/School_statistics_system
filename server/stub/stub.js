@@ -1,5 +1,7 @@
 import Subject from "./models/Subject.js";
 import Mark from "./models/Mark.js";
+import Student from "../models/Student.js";
+import {faker} from "@faker-js/faker";
 
 /*
 import { faker } from '@faker-js/faker';
@@ -368,3 +370,29 @@ const subjects  = [
 
 
 */
+
+
+// propper code for generating marks
+
+/*
+Student.find().then((students) => {
+    const marks = [];
+    students.forEach((student) => {
+        student.disciplines.forEach((subjectId) => {
+            for (let i = 0; i < 10; i++) {
+                const newMark = {
+                    _id: faker.datatype.hexadecimal(12) + faker.datatype.hexadecimal(12),
+                    studentId: student._id,
+                    subjectId: subjectId,
+                    month: i + 1,
+                    exam: (i + 1 === 4 || i + 1 === 9) ? true : false,
+                    attempt: (i + 1 === 4 || i + 1 === 9) ? faker.datatype.number({ min: 1, max: 3 }) : 1,
+                    mark: faker.datatype.float({ min: 2, max: 5 })
+                };
+                marks.push(newMark);
+            }
+        });
+    });
+    console.log('THESEAREMARKS', marks.length);
+    Mark.insertMany(marks).then(() => console.log('MARKS ADDED'));
+});*/

@@ -25,6 +25,7 @@ import {
 import {useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import Diversity1Icon from "@mui/icons-material/Diversity1";
+import {StyledButton} from "./StyledButton";
 
 const navItems = [
     {
@@ -144,13 +145,13 @@ export const SideNav = ({ drawerWidth, isNoneMobile, open }: any) => {
                 </Box>
                 <Box
                 >
-                    <Button
-                        variant="outlined"
-                        sx={{ m: 1, width: 0.5 }}
-                        onClick={logoutHandler}
-                    >
-                        Logout
-                    </Button>
+                    <StyledButton
+                        text="Вихід"
+                        onClickHandler={logoutHandler}
+                        styles={{
+                            color: `${theme.palette.primary[1000]} !important`,
+                        }}
+                    />
                 </Box>
             </div>)
             }

@@ -4,7 +4,7 @@ const PageHeader = ({ title, subtitle }: any) => {
     return (
         <Box>
             <Typography variant="h2" color={theme.palette.primary[600]} sx={{mb: "5px"}}>{title}</Typography>
-            <Typography variant="h5" color={theme.palette.primary[500]} sx={{mb: "5px"}}>{subtitle}</Typography>
+            <Typography variant="h5" color={theme.palette.primary[500]} sx={{mb: "5px", mt: "1px"}}>{subtitle}</Typography>
         </Box>
     )
 }
