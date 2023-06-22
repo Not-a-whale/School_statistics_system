@@ -6,7 +6,7 @@ import {
     LightModeOutlined,
     ArrowDropDownOutlined
 } from "@mui/icons-material";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import FlexBetween from "./FlexBetween";
 import IconButton from "@mui/material/IconButton";
 import {useState} from "react";
@@ -15,6 +15,7 @@ import {setSidebar} from "../state";
 const Header = () => {
     const dispatch = useDispatch();
     const theme: any = useTheme();
+    const { userInfo } = useSelector((state: any) => state.auth);
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
     const handleClick = (event: any) => setAnchorEl(event.currentTarget);
@@ -67,7 +68,7 @@ const Header = () => {
                         }}>
                         <Box
                             component="img"
-                            src={'profileImage'}
+                            src="https://scontent-iev1-1.xx.fbcdn.net/v/t31.18172-8/28619614_1735832159800170_8498795598189168794_o.jpg?_nc_cat=101&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RSeHq5Vz8D4AX96T5jn&_nc_ht=scontent-iev1-1.xx&oh=00_AfCQDvg9BpfI6IYCE8BWlhQHO6z6tDww8I1hRz2w06lVKQ&oe=64BB5288"
                             alt="profile"
                             height="32px"
                             width="32px"
@@ -78,17 +79,16 @@ const Header = () => {
                         />
                         <Box textAlign="left">
                             <Typography
-                                fontWeight="bold"
-                                fontSize="0.85rem"
-                                sx={{ color: theme.palette.secondary[100] }}
+                                fontSize="1rem"
+                                sx={{ color: theme.palette.primary[1000] }}
                             >
-                                "Nikita Kornienko"
+                                {userInfo.name}
                             </Typography>
                             <Typography
                                 fontSize="0.75rem"
-                                sx={{ color: theme.palette.secondary[200] }}
+                                sx={{ color: theme.palette.primary[1000] }}
                             >
-                                "Front-end Developer"
+                                Студент
                             </Typography>
                         </Box>
                         <ArrowDropDownOutlined

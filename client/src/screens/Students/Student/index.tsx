@@ -2,7 +2,6 @@ import {Box, Typography, useTheme} from "@mui/material";
 import PageHeader from "../../../components/PageHeader";
 import {useLocation} from "react-router-dom";
 import {useGetStudentQuery} from "../../../state/api";
-import FlexBetween from "../../../components/FlexBetween";
 import classes from "./index.module.scss";
 import OverviewChart from "../../../components/OverviewChart";
 
@@ -10,12 +9,51 @@ export const Student = () => {
     const theme: any = useTheme();
     const location: any = useLocation();
     const studentId = location.pathname.split('/').pop();
-    console.log('id', studentId);
+    const months = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'];
     const { data, isLoading }: any = useGetStudentQuery(studentId);
     if (!data || isLoading) return "Loading...";
     const student = data[0];
 
-    console.log('student', data);
+// Создание объекта для хранения суммы и количества оценок для каждого месяца
+    const monthlyData: any = {};
+
+// Обход каждого объекта в исходном массиве
+    student.marks.forEach((obj: any) => {
+        const { month, mark } = obj;
+
+        // Проверка, существует ли уже запись для текущего месяца
+        if (!monthlyData[month]) {
+            monthlyData[month] = {
+                sum: 0,
+                count: 0
+            };
+        }
+
+        // Добавление оценки к сумме и увеличение счетчика
+        monthlyData[month].sum += mark;
+        monthlyData[month].count++;
+    });
+
+// Преобразование monthlyData в массив объектов с нужной структурой
+    const result = Object.entries(monthlyData).map(([month, { sum, count }]: any) => {
+        const monthName = getMonthName(month); // Функция, которая возвращает название месяца по номеру
+        const average = sum / count;
+
+        return {
+            x: monthName,
+            y: average
+        };
+    });
+
+// Функция для получения названия месяца по его номеру
+    function getMonthName(month: any) {
+        const monthNames = [
+            "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Вересень", "Жовтень", "Листопад", "Грудень"
+        ];
+        return monthNames[month - 1] || "";
+    }
+
+    const avgData = [{data: result, color: "#000", id: "marks"}]
     return (
         <Box m="1.5rem 2.5rem">
             <Box
@@ -46,7 +84,7 @@ export const Student = () => {
                         }}
                     >
                             <img style={{borderRadius: "50%"}} src={student.avatar} alt="student avatar"/>
-                            <Typography variant="h1" sx={{ color: theme.palette.primary[600], marginBottom: ".5rem", marginTop: ".5rem" }}>
+                            <Typography variant="h2" sx={{ color: theme.palette.primary[600], marginBottom: ".5rem", marginTop: ".5rem" }}>
                                 {`${student.name} - ${student.last_name}`}
                             </Typography>
                             <div className={classes.details}>
@@ -83,9 +121,9 @@ export const Student = () => {
                         }}
                     >
                         <Typography variant="h5" sx={{ color: theme.palette.primary[600], marginBottom: ".5rem" }}>
-                            Середній бал наших студентів
+                            Середній бал {student.name} - {student.last_name} за місяці
                         </Typography>
-                        <OverviewChart isDashboard={false} marks={student.marks}/>
+                        <OverviewChart isDashboard={false} marks={[...avgData]}/>
                     </Box>
                 </Box>
 

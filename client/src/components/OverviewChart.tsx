@@ -5,8 +5,9 @@ import {ResponsiveLine} from "@nivo/line";
 const OverviewChart = ({ isDashboard, marks }: any) => {
     const theme: any = useTheme();
     const { data, isLoading } = useGetMarksQuery();
-    console.log('overview chart data', data);
-    if (!data || isLoading) return "Loading...";
+    if (isDashboard && (!data || isLoading)) return "Loading...";
+    if (!isDashboard && (!marks || isLoading)) return "Loading...";
+    console.log('overview chart data', marks);
     return (
         <ResponsiveLine
             data={isDashboard ? data : marks}

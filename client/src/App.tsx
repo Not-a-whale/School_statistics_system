@@ -12,6 +12,7 @@ function App() {
     const mode = useSelector((state) => state.global.mode);
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
     const { userInfo } = useSelector((state: any) => state.auth);
+    console.log('userInfo', userInfo);
     const navigate = useNavigate();
     const location: any = useLocation();
     const path = location.pathname.split('/')[1];

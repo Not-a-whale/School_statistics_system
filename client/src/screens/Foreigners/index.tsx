@@ -7,7 +7,6 @@ import {useGetStudentsGeographyQuery} from "../../state/api";
 export const Foreigners = () => {
     const theme: any = useTheme();
     const { data, isLoading }: any = useGetStudentsGeographyQuery();
-    console.log('FOREIGNERS', data);
     if (!data || isLoading) return "Loading...";
     return (
         <Box m="1.5rem 2.5rem">

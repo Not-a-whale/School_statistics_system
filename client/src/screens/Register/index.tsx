@@ -81,7 +81,7 @@ const Register = () => {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Вхід
+                        Реєстрація
                     </Typography>
                     <Box component="form"
                          onSubmit={submitHandler}
